@@ -265,6 +265,27 @@
   
   
   
+  	<!-- ZED 2 LINK -->
+  	 <link name="ZED2">
+    <visual>
+      <geometry>
+        <box size="0.05 0.1 0.05"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.05 0.1 0.05"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+  
+  
+  
 	
 	
 	
@@ -310,20 +331,20 @@
 
 	<!-- Left Wheel Joint Front-->
 	<joint type="continuous" name="left_wheel_hinge_front">
-	    <origin xyz="0.2 0.30 0" rpy="0 0 0" />
-	    <parent link="chassis"/>
-	    <child link="left_wheel_front" />
-	    <axis xyz="0 1 0" rpy="0 0 0" />
-	    <limit effort="10000" velocity="1000" />
-	    <dynamics damping="1.0" friction="1.0" />
+	<origin xyz="0.2 0.30 0" rpy="0 0 0" />
+	<parent link="chassis"/>
+	<child link="left_wheel_front" />
+	<axis xyz="0 1 0" rpy="0 0 0" />
+	<limit effort="10000" velocity="1000" />
+	<dynamics damping="1.0" friction="1.0" />
 	</joint>
 
 	<!-- CAMERA JOINT -->
 	<joint name="camera_joint" type="fixed">
-		<origin xyz="0.26 0 0" rpy="0 0 0" />
-		<parent link="chassis"/>
-		<child link="camera" />
-		<axis xyz="0 1 0"/>
+	<origin xyz="0.26 0 0" rpy="0 0 0" />
+	<parent link="chassis"/>
+	<child link="camera" />
+	<axis xyz="0 1 0"/>
 	</joint>
 
 	<!-- LIDAR JOINT -->
@@ -336,20 +357,31 @@
 	
 	<!-- IMU JOINT -->
 	<joint name="imu_joint" type="fixed">
-    <origin xyz="0.04 0 0.12" rpy="0 0 0" />
-    <parent link="chassis"/>
-    <child link="imu_link" />  
-    <axis xyz="0 1 0"/> 
-  </joint>
+    	<origin xyz="0.04 0 0.12" rpy="0 0 0" />
+    	<parent link="chassis"/>
+    	<child link="imu_link" />  
+    	<axis xyz="0 1 0"/> 
+  	</joint>
   
   
   	<!--GPS JOINT -->
-  	 <joint name="gps_joint" type="fixed">
-    <origin xyz="0.4 0.0 0.04" rpy="0 0 0" />
-    <parent link="robot_footprint"/>
-    <child link="gps_link" />  
-    <axis xyz="0 1 0"/> 
-  </joint>
+  	<joint name="gps_joint" type="fixed">
+    	<origin xyz="0.4 0.0 0.04" rpy="0 0 0" />
+    	<parent link="robot_footprint"/>
+    	<child link="gps_link" />  
+   	 <axis xyz="0 1 0"/> 
+  	</joint>
+  
+  
+  	<!-- ZED2 JOINT -->
+  	<joint name="ZED2_joint" type="fixed">
+  	<origin xyz ="-0.15 0 0.195" rpy ="0 0 0" />
+  	<parent link="robot_footprint"/>
+  	<child link ="ZED2" />
+  	<axis xyz ="0 1 0" />
+  	</joint>
+  	
+  	
   
   	
 
@@ -402,15 +434,13 @@
 		<maxVel>1.0</maxVel>
 		<minDepth>0.00</minDepth>
 	</gazebo>
-	<!--<gazebo reference="right_wheel">
-		<material>Gazebo/Green</material>
-	</gazebo>-->
+	
 
 	<gazebo reference="camera">
 		<material>Gazebo/Red</material>
 	</gazebo>
 	
-	<gazebo reference="imu_link">
+	<gazebo reference="ZED2">
 		<material>Gazebo/Orange</material>
 	</gazebo>
 
@@ -418,7 +448,7 @@
 		<material>Gazebo/Blue</material>
 	</gazebo>
 
-	<!-- Motor, Camera and Lidar Simulation -->
+	<!-- Sensors, Camera and Lidar Simulation -->
 	<xacro:include filename="$(find roverbot)/urdf/roverbot.gazebo" />
 
 </robot>
