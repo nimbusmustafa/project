@@ -1,0 +1,2 @@
+roverbot
+-DCATKIN_DEVEL_PREFIX=/home/mustafa/Group_6_MRM/devel -DCMAKE_INSTALL_PREFIX=/home/mustafa/Group_6_MRM/install -G Unix Makefiles
