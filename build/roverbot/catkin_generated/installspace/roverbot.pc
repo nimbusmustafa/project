@@ -1,8 +1,0 @@
-prefix=/home/mustafa/Group_6_MRM/install
-
-Name: roverbot
-Description: Description of roverbot
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
